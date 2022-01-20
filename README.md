@@ -1,2 +1,2 @@
 # merge-playlists
-Using the Spotify API, this simple app allows users to search and merge playlists together. 
+Using the Spotify API, this simple app allows users to search and merge playlists together. Will be complete by 1/31
