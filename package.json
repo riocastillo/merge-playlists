@@ -1,0 +1,31 @@
+{
+  "name": "merge-playlists",
+  "version": "1.0.0",
+  "description": "Using the Spotify API, this simple app allows users to search and merge playlists together. Will be complete by 1/31",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js",
+    "app": "nodemon server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/riocastillo/merge-playlists.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/riocastillo/merge-playlists/issues"
+  },
+  "homepage": "https://github.com/riocastillo/merge-playlists#readme",
+  "dependencies": {
+    "body-parser": "^1.19.1",
+    "debug": "^4.3.3",
+    "dotenv": "^14.3.0",
+    "ejs": "^3.1.6",
+    "express": "^4.17.2",
+    "mongoose": "^6.1.8",
+    "node": "^17.4.0",
+    "nodemon": "^2.0.15"
+  }
+}
