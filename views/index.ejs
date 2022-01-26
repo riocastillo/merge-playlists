@@ -6,7 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="../style.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Domine:wght@700&family=Ubuntu+Mono&display=swap"
@@ -15,16 +15,28 @@
 
 <body>
     <div class="menu">
-        <div class="dropdown">
-            <button onclick="myFunction()" class="dropbtn">Rio's playlists</button>
-            <div id="myDropdown" class="dropdown-content">
-                <input type="text" placeholder="Search through.." id="myInput" onkeyup="filterFunction()">
-                <a href="#">Playlist 1</a>
-                <a href="#">Playlist 2</a>
-                <a href="#">Playlist 3</a>
-            </div>
+            <button class="dropbtn openLists" onclick="openList(event)">Rio's playlists</button>
+
+    </div>
+
+    <div id="listModal" class="modal">
+        <!-- Modal content -->
+        <div class="modal-content edit">
+            <span class="exit">&times;</span>
+            <h2 class="copied key">Hold down the Ctrl key (for Windows) or Command (for Macs) to select two playlists</h2>
+            <form id="form2">
+                <select multiple class="choose">
+                  <option>Playlist 1</option>
+                  <option>Playlist 2</option>
+                  <option>Playlist 3</option>
+                </select>
+
+              </form>
+              <button class="goToPlaylist">submit</button>
+
         </div>
     </div>
+
     <section class="onePlay">
         <section class="nav">
             <section class="borderLeft">
@@ -45,7 +57,7 @@
                 <p class="navRight">rio</p>
             </section>
         </section>
-        <p class="playlistTitle">Title: Im Anxious And Don't Know How To Code!</p>
+        <p class="playlistTitle">Title: I'm Anxious And Don't Know How To Code!</p>
     </section>
     <section class="buttons">
         <div class="merge buttonFlip" onclick="openWindow(event)">
