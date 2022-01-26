@@ -197,13 +197,9 @@ app.post('/merged', async (req, res) => {
             console.log(error.data)
         }
     })();
-
-
     console.log('created playlist')
     res.redirect('/playlists')
 })
-
-
 
 app.listen(port);
 console.log('The magic happens on port ' + port);
