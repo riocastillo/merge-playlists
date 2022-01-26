@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -7,45 +8,61 @@
     <title>Document</title>
     <link rel="stylesheet" href="style.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Domine:wght@700&family=Ubuntu+Mono&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Domine:wght@700&family=Ubuntu+Mono&display=swap"
+        rel="stylesheet">
 </head>
+
 <body>
+    <div class="menu">
+        <div class="dropdown">
+            <button onclick="myFunction()" class="dropbtn">Rio's playlists</button>
+            <div id="myDropdown" class="dropdown-content">
+                <input type="text" placeholder="Search through.." id="myInput" onkeyup="filterFunction()">
+                <a href="#">Playlist 1</a>
+                <a href="#">Playlist 2</a>
+                <a href="#">Playlist 3</a>
+            </div>
+        </div>
+    </div>
     <section class="onePlay">
         <section class="nav">
-            <section class="borderLeft"><p class="navLeft">playlist one</p>
-                </section>
-                <section class="borderRight">
-            <p class="navRight">your name</p>
-        </section>
-        </section>
-        <p class="playlistTitle">Title of First Playlist: Goes Right Here</p>
-        </section>
-        <section class="second onePlay">
-            <section class="nav">
-                <section class="borderLeft"><p class="navLeft">playlist two</p>
-                    </section>
-                    <section class="borderRight">
-                <p class="navRight">your name</p>
+            <section class="borderLeft">
+                <p class="navLeft">playlist one</p>
             </section>
+            <section class="borderRight">
+                <p class="navRight">rio</p>
             </section>
-            <p class="playlistTitle">Title of Second Playlist: Goes Right Here</p>
+        </section>
+        <p class="playlistTitle">Title: Corona Can't Kill Me, But My Boredom Might</p>
+    </section>
+    <section class="second onePlay">
+        <section class="nav">
+            <section class="borderLeft">
+                <p class="navLeft">playlist two</p>
             </section>
+            <section class="borderRight">
+                <p class="navRight">rio</p>
+            </section>
+        </section>
+        <p class="playlistTitle">Title: Im Anxious And Don't Know How To Code!</p>
+    </section>
     <section class="buttons">
-            <div class="merge buttonFlip" onclick="openWindow(event)">
-                <div class="mergeBtn" >Merge playlists</div>
-                <div>Merging...</div>
-            </div>
+        <div class="merge buttonFlip" onclick="openWindow(event)">
+            <div class="mergeBtn">Merge playlists</div>
+            <div>Merging...</div>
+        </div>
     </section>
 
     <div id="myModal" class="modal">
         <!-- Modal content -->
         <div class="modal-content">
-          <span class="close">&times;</span>
-          <h2 class="copied">URL to your new playlist is copied to your clipboard!</h2>
-          <button class="goToPlaylist">go to playlist here</button>
+            <span class="close">&times;</span>
+            <h2 class="copied">URL to your new playlist is copied to your clipboard!</h2>
+            <button class="goToPlaylist">go to playlist here</button>
         </div>
-      </div>
+    </div>
 </body>
 <script src="main.js"></script>
+
 </html>

@@ -1,4 +1,4 @@
-<img src = "sample.png" width = 100%>
+<img src = "screen.png" width = 100%>
 
 ## Description
 Using the `Spotify API`, this  app allows users to search for playlists and merge them together. Newly created playlist will have an option for alphabetical ordering.
