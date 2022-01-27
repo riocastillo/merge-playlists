@@ -123,7 +123,17 @@ app.get('/playlists', (req, res) => {
             playlist.push({ id: body.items[i].id, name: body.items[i].name, displayName: body.items[i].owner.display_name })
         }
 
-        selected = req.session.selected 
+        selected = req.session.selected
+        let selectedPlaylistNames = ""
+        if (selected) {
+            for (let i = 0; i < selected.length; i++) {
+                let name = selected[i].name
+                let nameArr = name.split(" ")
+                console.log(nameArr)
+                
+            }
+        }
+
         res.render('index.ejs', {
             playlist,
             selected
@@ -196,7 +206,7 @@ app.post('/merged', async (req, res) => {
         }
     })();
     console.log('created playlist')
-    console.log('selected playlists info',req.body.selectedPlaylists)
+    console.log('selected playlists info', req.body.selectedPlaylists)
     req.session.selected = req.body.selectedPlaylists
     res.redirect('/playlists')
 })
