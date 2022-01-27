@@ -153,9 +153,7 @@ app.post('/merged', async (req, res) => {
 
             try {
                 const response = await axios.get(`https://api.spotify.com/v1/playlists/${playlistId}/tracks`, config)
-                console.log(response.data.items, 'test2')
                 for (let i = 0; i < response.data.items.length; i++) {
-                    console.log(response.data.items[i].track.uri, 'test')
                     playlistUris.push(response.data.items[i].track.uri)
                 }
             }
@@ -163,9 +161,7 @@ app.post('/merged', async (req, res) => {
                 console.log(error)
             }
         }
-        console.log(playlistUris, 'uris')
         playlistUris = [...new Set(playlistUris)]
-        console.log('got tracks', playlistUris)
 
         try {
             const userResults = await axios.get('https://api.spotify.com/v1/me', config)
@@ -190,7 +186,6 @@ app.post('/merged', async (req, res) => {
             var bodyParameters = {
                 uris: playlistUris
             }
-            console.log(playlistId, playlistUris)
             const playlistMutationResponse = await axios.post(`https://api.spotify.com/v1/playlists/${playlistId}/tracks`, bodyParameters, config)
         }
         catch (error) {
@@ -198,6 +193,7 @@ app.post('/merged', async (req, res) => {
         }
     })();
     console.log('created playlist')
+    console.log('selected playlists info',req.body.selectedPlaylists)
     res.redirect('/playlists')
 })
 
