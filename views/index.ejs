@@ -15,7 +15,7 @@
 
 <body>
     <div class="menu">
-            <button class="dropbtn openLists" onclick="openList(event)">Rio's playlists</button>
+            <button class="dropbtn openLists" onclick="openList(event)"><%= playlist[0].displayName %>'s playlists</button>
 
     </div>
 
@@ -25,14 +25,15 @@
             <span class="exit">&times;</span>
             <h2 class="copied key">Hold down the Ctrl key (for Windows) or Command (for Macs) to select two playlists</h2>
             <form id="form2">
-                <select multiple class="choose">
-                  <option>Playlist 1</option>
-                  <option>Playlist 2</option>
-                  <option>Playlist 3</option>
+                <select multiple class="choose" id="names">
+                    <% for(let i = 0; i < playlist.length; i++) { %>
+                  <option value="<%= playlist[i].id %>"> <%= playlist[i].name %></option>
+                <% } %>
                 </select>
 
               </form>
-              <button class="goToPlaylist">submit</button>
+              <input type="text" id="newPlaylistName" placeholder="enternew playlist name"></input>
+              <button class="goToPlaylist" id="submit">submit</button>
 
         </div>
     </div>
@@ -43,7 +44,7 @@
                 <p class="navLeft">playlist one</p>
             </section>
             <section class="borderRight">
-                <p class="navRight">rio</p>
+                <p class="navRight"><%= playlist[0].displayName %></p>
             </section>
         </section>
         <p class="playlistTitle">Title: Corona Can't Kill Me, But My Boredom Might</p>
@@ -54,7 +55,7 @@
                 <p class="navLeft">playlist two</p>
             </section>
             <section class="borderRight">
-                <p class="navRight">rio</p>
+                <p class="navRight"><%= playlist[0].displayName %></p>
             </section>
         </section>
         <p class="playlistTitle">Title: I'm Anxious And Don't Know How To Code!</p>

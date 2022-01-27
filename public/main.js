@@ -1,3 +1,5 @@
+// const { trusted } = require("mongoose");
+
 // Get the button that opens the modal
 let mergeButton = document.querySelector('.merge')
 
@@ -51,4 +53,44 @@ window.onclick = function (event) {
     if (event.target == modal) {
         modal.style.display = "none";
     }
+}
+
+document.getElementById('submit').addEventListener('click', submitNames)
+
+function submitNames() {
+    let selectedPlaylists = []
+    const select = document.getElementById('names')
+    var options = select && select.options;
+    var opt;
+
+    for (var i = 0, iLen = options.length; i < iLen; i++) {
+        opt = options[i];
+
+        if (opt.selected === true) {
+            console.log(opt.innerText, opt.value)
+            selectedPlaylists.push({ name: opt.innerText, id: opt.value })
+        }
+    }
+
+    console.log(selectedPlaylists)
+
+    // to do: get all the songs for each selected playlist from spotify (fetch to spotify)
+    // combine them into a single arr of songs
+    // send spotify that new arr of combined songs plus the new name to their create playlist API
+    // if that succeeds, they stay on the same page and you can send them the URL to the new playlist
+    // if it fails, they stay on that same page but get a failed message
+
+    fetch('merged', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+            'newPlaylistName': document.getElementById('newPlaylistName').value,
+            selectedPlaylists
+        })
+    }).then(function (response) {
+        window.location.reload()
+    })
+
 }
