@@ -15,7 +15,9 @@
 
 <body>
     <div class="menu">
-            <button class="dropbtn openLists" onclick="openList(event)"><%= playlist[0].displayName %>'s playlists</button>
+        <button class="dropbtn openLists" onclick="openList(event)">
+            <%= playlist[0].displayName %>'s playlists
+        </button>
 
     </div>
 
@@ -23,58 +25,66 @@
         <!-- Modal content -->
         <div class="modal-content edit">
             <span class="exit">&times;</span>
-            <h2 class="copied key">Hold down the Ctrl key (for Windows) or Command (for Macs) to select two playlists</h2>
+            <h2 class="copied key">Hold down the Ctrl key (for Windows) or Command (for Macs) to select two playlists
+            </h2>
             <form id="form2">
                 <select multiple class="choose" id="names">
-                    <% for(let i = 0; i < playlist.length; i++) { %>
-                  <option value="<%= playlist[i].id %>"> <%= playlist[i].name %></option>
-                <% } %>
+                    <% for(let i=0; i < playlist.length; i++) { %>
+                        <option value="<%= playlist[i].id %>">
+                            <%= playlist[i].name %>
+                        </option>
+                        <% } %>
                 </select>
 
-              </form>
-              <input type="text" id="newPlaylistName" placeholder="enter new playlist name"></input>
-              <button class="goToPlaylist" id="submit">submit</button>
+            </form>
+            <input type="text" id="newPlaylistName" placeholder="enter new playlist name"></input>
+            <button class="goToPlaylist" id="submit">submit</button>
 
         </div>
     </div>
-
-    <section class="onePlay">
-        <section class="nav">
-            <section class="borderLeft">
-                <p class="navLeft">playlist one</p>
+    <% if(selected) { %>
+        <section class="onePlay">
+            <section class="nav">
+                <section class="borderLeft">
+                    <p class="navLeft">playlist one</p>
+                </section>
+                <section class="borderRight">
+                    <p class="navRight">
+                        <%= playlist[0].displayName %>
+                    </p>
+                </section>
             </section>
-            <section class="borderRight">
-                <p class="navRight"><%= playlist[0].displayName %></p>
-            </section>
+            <p class="playlistTitle">Title: <%= selected[0].name%></p>
         </section>
-        <p class="playlistTitle">Title: Corona Can't Kill Me, But My Boredom Might</p>
-    </section>
-    <section class="second onePlay">
-        <section class="nav">
-            <section class="borderLeft">
-                <p class="navLeft">playlist two</p>
+        <section class="second onePlay">
+            <section class="nav">
+                <section class="borderLeft">
+                    <p class="navLeft">playlist two</p>
+                </section>
+                <section class="borderRight">
+                    <p class="navRight">
+                        <%= playlist[0].displayName %>
+                    </p>
+                </section>
             </section>
-            <section class="borderRight">
-                <p class="navRight"><%= playlist[0].displayName %></p>
-            </section>
+            <p class="playlistTitle">Title: <%= selected[1].name%></p>
         </section>
-        <p class="playlistTitle">Title: I'm Anxious And Don't Know How To Code!</p>
-    </section>
-    <section class="buttons">
-        <div class="merge buttonFlip" onclick="openWindow(event)">
-            <div class="mergeBtn">Merge playlists</div>
-            <div>Merging...</div>
-        </div>
-    </section>
+        <% } %>
+            <section class="buttons">
+                <div class="merge buttonFlip" onclick="openWindow(event)">
+                    <div class="mergeBtn">Merge playlists</div>
+                    <div>Merging...</div>
+                </div>
+            </section>
 
-    <div id="myModal" class="modal">
-        <!-- Modal content -->
-        <div class="modal-content">
-            <span class="close">&times;</span>
-            <h2 class="copied">URL to your new playlist is copied to your clipboard!</h2>
-            <button class="goToPlaylist">go to playlist here</button>
-        </div>
-    </div>
+            <div id="myModal" class="modal">
+                <!-- Modal content -->
+                <div class="modal-content">
+                    <span class="close">&times;</span>
+                    <h2 class="copied">URL to your new playlist is copied to your clipboard!</h2>
+                    <button class="goToPlaylist">go to playlist here</button>
+                </div>
+            </div>
 </body>
 <script src="main.js"></script>
 

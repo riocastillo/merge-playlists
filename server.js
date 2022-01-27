@@ -122,8 +122,11 @@ app.get('/playlists', (req, res) => {
         for (let i = 0; i < body.items.length; i++) {
             playlist.push({ id: body.items[i].id, name: body.items[i].name, displayName: body.items[i].owner.display_name })
         }
+
+        selected = req.session.selected 
         res.render('index.ejs', {
-            playlist
+            playlist,
+            selected
         })
     });
 })
@@ -194,6 +197,7 @@ app.post('/merged', async (req, res) => {
     })();
     console.log('created playlist')
     console.log('selected playlists info',req.body.selectedPlaylists)
+    req.session.selected = req.body.selectedPlaylists
     res.redirect('/playlists')
 })
 
