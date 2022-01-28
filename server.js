@@ -117,26 +117,37 @@ app.get('/playlists', (req, res) => {
 
     // use the access token to access the Spotify Web API
     request.get(options, function (error, response, body) {
-
+        let playlistURL = req.session.url
         let playlist = []
         for (let i = 0; i < body.items.length; i++) {
             playlist.push({ id: body.items[i].id, name: body.items[i].name, displayName: body.items[i].owner.display_name })
         }
-
+        
         selected = req.session.selected
-        let selectedPlaylistNames = ""
         if (selected) {
+            // loop through the selected array 
+            // we split it the playlist name 
+            // loop through the playlist name array
+            // grab the first index => make it uppercase
+            // slice the remaining indexes => lowercase it
+            // replace whats inside NameArr with formattedTitle
+            // join the playlist name array
             for (let i = 0; i < selected.length; i++) {
                 let name = selected[i].name
                 let nameArr = name.split(" ")
-                console.log(nameArr)
-                
+                for (let j = 0; j < nameArr.length; j++) {
+                    //each time we loop its going to be a different string
+                    let formattedTitle = nameArr[j].charAt(0).toUpperCase() + nameArr[j].slice(1).toLowerCase()
+                    nameArr[j] = formattedTitle
+                }
+                selected[i].name = nameArr.join(" ")
             }
         }
 
         res.render('index.ejs', {
             playlist,
-            selected
+            selected,
+            playlistURL
         })
     });
 })
@@ -171,7 +182,8 @@ app.post('/merged', async (req, res) => {
                 }
             }
             catch (error) {
-                console.log(error)
+                res.send(500, error)
+                return
             }
         }
         playlistUris = [...new Set(playlistUris)]
@@ -181,7 +193,8 @@ app.post('/merged', async (req, res) => {
             userId = userResults.data.id
         }
         catch (error) {
-            console.log(error)
+            res.send(500, error)
+                return
         }
 
         var bodyParameters = {
@@ -190,25 +203,27 @@ app.post('/merged', async (req, res) => {
         try {
             const playlistResponse = await axios.post(`https://api.spotify.com/v1/users/${userId}/playlists`, bodyParameters, config)
             playlistId = playlistResponse.data.id
+            req.session.url = playlistResponse.data.external_urls.spotify
         }
         catch (error) {
-            console.log('error in playlist response')
+            res.send(500, error)
+                return
         }
         try {
-
             var bodyParameters = {
                 uris: playlistUris
             }
             const playlistMutationResponse = await axios.post(`https://api.spotify.com/v1/playlists/${playlistId}/tracks`, bodyParameters, config)
         }
         catch (error) {
-            console.log(error.data)
+            res.send(500, error)
+                return
         }
+        req.session.selected = req.body.selectedPlaylists
+
+        res.redirect('/playlists')
     })();
-    console.log('created playlist')
-    console.log('selected playlists info', req.body.selectedPlaylists)
-    req.session.selected = req.body.selectedPlaylists
-    res.redirect('/playlists')
+
 })
 
 app.listen(port);

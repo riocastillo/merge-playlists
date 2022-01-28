@@ -9,9 +9,15 @@ let closeModal = document.getElementsByClassName("close")[0];
 // When the user clicks on the button, open the modal
 
 function openWindow(evt) {
-    console.log('function accessed')
     let modal = document.getElementById("myModal");
+    evt.preventDefault();
+    let button = evt.target
+    let url = button.closest('[data-url]').dataset.url
+    navigator.clipboard.writeText(url).then(() => {
     modal.style.display = "block";
+    }, () => {
+        alert('something went wrong...')
+    });
 }
 
 // When the user clicks on <span> (x), close the modal

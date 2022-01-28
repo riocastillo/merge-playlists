@@ -14,13 +14,12 @@
 </head>
 
 <body>
-    <div class="menu">
-        <button class="dropbtn openLists" onclick="openList(event)">
+    <div class="<% if (selected) { %> hide <% } else { %> firstButton <% } %>" class="menu firstButton">
+        <button class="dropbtn openLists <% if (!selected) { %> biggerFont<% }%>" onclick="openList(event)">
             <%= playlist[0].displayName %>'s playlists
         </button>
 
     </div>
-
     <div id="listModal" class="modal">
         <!-- Modal content -->
         <div class="modal-content edit">
@@ -42,6 +41,12 @@
 
         </div>
     </div>
+    <% if(selected) { %>
+        <div class="menu">
+            <button class="dropbtn openLists" onclick="openList(event)">
+                <%= playlist[0].displayName %>'s playlists
+            </button>
+        </div>
         <section class="onePlay">
             <section class="nav">
                 <section class="borderLeft">
@@ -53,7 +58,8 @@
                     </p>
                 </section>
             </section>
-            <p class="playlistTitle">Title: Corona Can't Kill Me, But My Boredom Might</p>
+            <p class="playlistTitle">Title: <%= selected[0].name%>
+            </p>
         </section>
         <section class="second onePlay">
             <section class="nav">
@@ -66,21 +72,23 @@
                     </p>
                 </section>
             </section>
-            <p class="playlistTitle">Title: I'm Anxious And Don't Know How To Code!</p>
+            <p class="playlistTitle">Title: <%= selected[1].name%>
+            </p>
         </section>
-            <section class="buttons">
-                <div class="merge buttonFlip" onclick="openWindow(event)">
-                    <div class="mergeBtn">Merge playlists</div>
-                    <div>Merging...</div>
-                </div>
-            </section>
 
+        <section class="buttons">
+            <div class="merge buttonFlip" onclick="openWindow(event)" data-url="<%= playlistURL %>">
+                <div class="mergeBtn">Merge playlists</div>
+                <div>Merging...</div>
+            </div>
+        </section>
+        <% } %>
             <div id="myModal" class="modal">
                 <!-- Modal content -->
                 <div class="modal-content">
                     <span class="close">&times;</span>
                     <h2 class="copied">URL to your new playlist is copied to your clipboard!</h2>
-                    <button class="goToPlaylist">go to playlist here</button>
+                    <button class="goToPlaylist"  onclick="window.location.href='<%= playlistURL %>'">go to playlist here</button>
                 </div>
             </div>
 </body>
